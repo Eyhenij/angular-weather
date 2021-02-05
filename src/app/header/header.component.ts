@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {CitiesService} from '../cities.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IRegion} from '../interfaces/region.interface';
 
 @Component({
@@ -9,24 +8,16 @@ import {IRegion} from '../interfaces/region.interface';
 })
 export class HeaderComponent implements OnInit {
 
-    public regions: IRegion[];
-    public selectedRegion: IRegion;
+    @Input() regions: IRegion[];
+    @Input() selectedRegion: IRegion;
+    @Output() onRegionSelect: EventEmitter<IRegion> = new EventEmitter<IRegion>();
 
-    constructor(private citiesService: CitiesService) {}
+    constructor() {}
 
-    ngOnInit(): void {
-        this.getRegions();
-    }
-
-    getRegions(): void {
-        this.citiesService.getCitiesData().subscribe(regions => {
-            this.regions = regions[0].regions;
-            this.selectedRegion = this.regions[0];
-        });
-    }
+    ngOnInit(): void {}
 
     selectRegion(region: IRegion): void {
-        this.selectedRegion = region;
+        this.onRegionSelect.emit(region);
     }
 
 }

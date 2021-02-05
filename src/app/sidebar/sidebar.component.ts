@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CitiesService} from '../cities.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IRegion} from '../interfaces/region.interface';
 import {ICity} from '../interfaces/city.interface';
 
@@ -10,20 +9,17 @@ import {ICity} from '../interfaces/city.interface';
 })
 export class SidebarComponent implements OnInit {
 
-    public cities: any;
+    @Input() regions: IRegion[];
+    @Input() selectedRegion: IRegion;
+    @Input() cities: ICity[];
+    @Input() selectedCity: ICity;
+    @Output() onCitySelect: EventEmitter<ICity> = new EventEmitter<ICity>();
 
-    constructor(private citiesService: CitiesService) {}
+    constructor() {}
+    ngOnInit(): void {}
 
-    ngOnInit(): void {
-        this.getCities();
-    }
-
-    getCities(): void {
-        this.citiesService.getCitiesData().subscribe(cities => {
-            const result = cities[0].regions[1].cities;
-            // console.log(result);
-            this.cities = result;
-        });
+    selectCity(city: ICity): void {
+        this.onCitySelect.emit(city);
     }
 
 }

@@ -1,2 +1,12 @@
-<hr>
-<div *ngFor="let city of cities">{{city.name}}</div>
+<div class="card__container">
+    <span
+        *ngFor="let city of cities"
+        class="card"
+        [class.selected]="city === selectedCity"
+        (click)="selectCity(city);"
+    >{{city?.name}}</span>
+</div>
+
+<!--<div>{{selectedRegion?.name}}</div>-->
+<!--<div *ngFor="let region of regions">{{region?.name}}</div>-->
+

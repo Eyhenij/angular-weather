@@ -1,10 +1,20 @@
 <div class="page">
     <div class="page__header">
-        <app-header></app-header>
+        <app-header
+            [regions]="regions"
+            [selectedRegion]="selectedRegion"
+            (onRegionSelect)="selectedRegion = $event"
+        ></app-header>
     </div>
 
     <div class="page__sidebar">
-        <app-sidebar></app-sidebar>
+        <app-sidebar
+            [regions]="regions"
+            [selectedRegion]="selectedRegion"
+            [cities]="cities"
+            [selectedCity]="selectedCity"
+            (onCitySelect)="selectedCity = $event"
+        ></app-sidebar>
     </div>
 
     <div class="page__content">
