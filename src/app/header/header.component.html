@@ -1,3 +1,8 @@
-<span class="card__container">
-    <span *ngFor="let region of regions" class="card">{{region.name}}</span>
-</span>
+<div class="card__container">
+    <span *ngFor="let region of regions"
+          class="card"
+          [class.selected]="region === selectedRegion"
+          (click)="selectRegion(region);"
+    >
+        {{region.name}}</span>
+</div>

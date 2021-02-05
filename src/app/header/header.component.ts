@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {CitiesService} from '../cities.service';
-import {ICity} from '../interfaces/city.interface';
 import {IRegion} from '../interfaces/region.interface';
 
 @Component({
@@ -11,6 +10,7 @@ import {IRegion} from '../interfaces/region.interface';
 export class HeaderComponent implements OnInit {
 
     public regions: IRegion[];
+    public selectedRegion: IRegion;
 
     constructor(private citiesService: CitiesService) {}
 
@@ -20,10 +20,13 @@ export class HeaderComponent implements OnInit {
 
     getRegions(): void {
         this.citiesService.getCitiesData().subscribe(regions => {
-            const result = regions[0].regions;
-            console.log(result);
-            this.regions = result;
+            this.regions = regions[0].regions;
+            this.selectedRegion = this.regions[0];
         });
+    }
+
+    selectRegion(region: IRegion): void {
+        this.selectedRegion = region;
     }
 
 }

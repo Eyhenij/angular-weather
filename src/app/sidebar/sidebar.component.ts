@@ -10,19 +10,20 @@ import {ICity} from '../interfaces/city.interface';
 })
 export class SidebarComponent implements OnInit {
 
-    public cities: ICity[];
+    public cities: any;
 
     constructor(private citiesService: CitiesService) {}
 
     ngOnInit(): void {
-        // this.getCities();
+        this.getCities();
     }
 
-    // getCities(): void {
-    //     this.citiesService.getCities().subscribe(cities => {
-    //         console.log(cities);
-    //         // this.cities = cities;
-    //     });
-    // }
+    getCities(): void {
+        this.citiesService.getCitiesData().subscribe(cities => {
+            const result = cities[0].regions[1].cities;
+            // console.log(result);
+            this.cities = result;
+        });
+    }
 
 }
