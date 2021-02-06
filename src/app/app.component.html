@@ -3,7 +3,7 @@
         <app-header
             [regions]="regions"
             [selectedRegion]="selectedRegion"
-            (onRegionSelect)="selectedRegion = $event"
+            (onRegionSelect)="onRegionChange($event)"
         ></app-header>
     </div>
 
@@ -18,6 +18,9 @@
     </div>
 
     <div class="page__content">
-        <app-content></app-content>
+        <app-content
+            [selectedCity]="selectedCity"
+            [weatherData]="weatherData"
+        ></app-content>
     </div>
 </div>
