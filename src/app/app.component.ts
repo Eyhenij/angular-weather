@@ -16,21 +16,21 @@ export class AppComponent implements OnInit{
     public selectedCity: ICity;
     public weatherData: any;
 
-    constructor(private citiesService: CitiesService) {}
+    constructor(private _citiesService: CitiesService) {}
 
     ngOnInit(): void {
         this.getRegions();
     }
 
     getRegions(): void {
-        this.citiesService.getCitiesData().subscribe(regions => {
+        this._citiesService.getCitiesData().subscribe(regions => {
             this.regions = regions;
             this.onRegionChange(this.regions[0]);
         });
     }
 
     getWeather(latitude: number, longitude: number): void {
-        this.citiesService.getWeatherData(latitude, longitude).subscribe((weather: any) => {
+        this._citiesService.getWeatherData(latitude, longitude).subscribe((weather: any) => {
             this.weatherData = weather;
         });
     }
