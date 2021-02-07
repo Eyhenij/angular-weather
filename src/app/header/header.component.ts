@@ -8,9 +8,13 @@ import {IRegion} from '../interfaces/region.interface';
 })
 export class HeaderComponent implements OnInit {
 
-    @Input() regions: IRegion[];
-    @Input() selectedRegion: IRegion;
-    @Output() onRegionSelect: EventEmitter<IRegion> = new EventEmitter<IRegion>();
+    @Input()
+    regions: IRegion[];
+    @Input()
+    selectedRegion: IRegion;
+
+    @Output()
+    onRegionSelect: EventEmitter<IRegion> = new EventEmitter<IRegion>();
 
     constructor() {}
 

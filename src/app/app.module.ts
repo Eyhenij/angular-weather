@@ -6,7 +6,6 @@ import {HeaderComponent} from './header/header.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import {ContentComponent} from './content/content.component';
 import {HttpClientModule} from '@angular/common/http';
-import {WeatherService} from './weather.service';
 import {CitiesService} from './cities.service';
 
 @NgModule({
@@ -20,7 +19,7 @@ import {CitiesService} from './cities.service';
         BrowserModule,
         HttpClientModule
     ],
-    providers: [CitiesService, WeatherService],
+    providers: [CitiesService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

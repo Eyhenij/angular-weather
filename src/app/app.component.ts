@@ -25,9 +25,7 @@ export class AppComponent implements OnInit{
     getRegions(): void {
         this.citiesService.getCitiesData().subscribe(regions => {
             this.regions = regions;
-            this.selectedRegion = this.regions[0];
-            this.cities = this.regions.filter(i => i.name === this.selectedRegion.name)[0].cities;
-            this.onCityChange(this.cities[0]);
+            this.onRegionChange(this.regions[0]);
         });
     }
 

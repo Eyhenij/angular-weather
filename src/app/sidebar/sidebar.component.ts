@@ -9,11 +9,17 @@ import {ICity} from '../interfaces/city.interface';
 })
 export class SidebarComponent implements OnInit {
 
-    @Input() regions: IRegion[];
-    @Input() selectedRegion: IRegion;
-    @Input() cities: ICity[];
-    @Input() selectedCity: ICity;
-    @Output() onCitySelect: EventEmitter<ICity> = new EventEmitter<ICity>();
+    @Input()
+    regions: IRegion[];
+    @Input()
+    selectedRegion: IRegion;
+    @Input()
+    cities: ICity[];
+    @Input()
+    selectedCity: ICity;
+
+    @Output()
+    onCitySelect: EventEmitter<ICity> = new EventEmitter<ICity>();
 
     constructor() {}
     ngOnInit(): void {}

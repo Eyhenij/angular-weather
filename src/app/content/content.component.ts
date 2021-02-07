@@ -8,8 +8,10 @@ import {ICity} from '../interfaces/city.interface';
 })
 export class ContentComponent implements OnInit {
 
-    @Input() selectedCity: ICity;
-    @Input() weatherData: any;
+    @Input()
+    selectedCity: ICity;
+    @Input()
+    weatherData: any;
 
     constructor() {}
 
