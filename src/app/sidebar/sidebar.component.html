@@ -1,9 +1,9 @@
-<div class="card__container">
-    <span
+<div class="sidebar__container">
+    <div class="sidebar__card">
+    <div class="sidebar__card_content"
         *ngFor="let city of cities"
-        class="card"
-        [class.selected]="city === selectedCity"
+        [class.sidebar__card_selected]="city === selectedCity"
         (click)="selectCity(city);"
-    >{{city?.name}}</span>
+    >{{city?.name}}</div>
+    </div>
 </div>
-

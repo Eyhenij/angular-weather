@@ -20,8 +20,6 @@ export class AppComponent implements OnInit{
 
     ngOnInit(): void {
         this.getRegions();
-        // this.getWeather(this.selectedCity.lat, this.selectedCity.lng);
-        this.getWeather(55.6411645, 27.0450814);
     }
 
     getRegions(): void {
@@ -29,21 +27,25 @@ export class AppComponent implements OnInit{
             this.regions = regions;
             this.selectedRegion = this.regions[0];
             this.cities = this.regions.filter(i => i.name === this.selectedRegion.name)[0].cities;
-            this.selectedCity = this.cities[0];
+            this.onCityChange(this.cities[0]);
         });
     }
 
     getWeather(latitude: number, longitude: number): void {
         this.citiesService.getWeatherData(latitude, longitude).subscribe((weather) => {
             this.weatherData = weather;
-            console.log(this.weatherData);
         });
     }
 
     onRegionChange(region: IRegion): void {
         this.selectedRegion = region;
         this.cities = this.regions.filter(i => i.name === region.name)[0].cities;
-        this.selectedCity = this.cities[0];
+        this.onCityChange(this.cities[0]);
+    }
+
+    onCityChange(city: ICity): void {
+        this.selectedCity = city;
+        this.getWeather(this.selectedCity.lat, this.selectedCity.lng);
     }
 
 }

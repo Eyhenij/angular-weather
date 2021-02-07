@@ -1,20 +1,25 @@
-.card__container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 25px;
-    margin-left: 3px;
-    .card {
-        cursor: pointer;
-    }
-    .card:hover {
-        transform: translateX(3px);
-        box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-    }
-    .selected {
-        color: black;
-        font-weight: 700;
-        font-size: large;
+.sidebar__container {
+    width: 100%;
+    height: 100%;
+    background-color: cornflowerblue;
+    .sidebar__card {
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        color: white;
+        .sidebar__card_content {
+            padding-left: 3px;
+            cursor: pointer;
+        }
+        .sidebar__card_content:hover {
+            transform: translateX(3px);
+            box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+        }
+        .sidebar__card_selected {
+            color: black;
+            font-weight: 700;
+            font-size: large;
+        }
     }
 }

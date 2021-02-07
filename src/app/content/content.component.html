@@ -1,3 +1,17 @@
-<div>{{selectedCity?.lat}}</div>
-<div>{{selectedCity?.lng}}</div>
-<div>{{weatherData?.currently.apparentTemperature}}</div>
+<div class="header__container">
+    <div class="header__card">
+        <div class="card__title">
+            <div>
+                {{selectedCity?.name}}
+            </div>
+        </div>
+        <div class="card__content">
+            <div>Current temperature: {{weatherData?.currently.temperature}}</div>
+            <div>Apparent temperature: {{weatherData?.currently.apparentTemperature}}</div>
+            <div>Humidity: {{weatherData?.currently.humidity}}</div>
+            <div>Pressure: {{weatherData?.currently.pressure}}</div>
+            <div>Wind speed: {{weatherData?.currently.windSpeed}}</div>
+            <div>The weather forecast for tomorrow: {{weatherData?.daily.data[0].summary}}</div>
+        </div>
+    </div>
+</div>
