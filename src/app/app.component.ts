@@ -30,14 +30,14 @@ export class AppComponent implements OnInit{
     }
 
     getWeather(latitude: number, longitude: number): void {
-        this.citiesService.getWeatherData(latitude, longitude).subscribe((weather) => {
+        this.citiesService.getWeatherData(latitude, longitude).subscribe((weather: any) => {
             this.weatherData = weather;
         });
     }
 
     onRegionChange(region: IRegion): void {
         this.selectedRegion = region;
-        this.cities = this.regions.filter(i => i.name === region.name)[0].cities;
+        this.cities = this.selectedRegion.cities;
         this.onCityChange(this.cities[0]);
     }
 

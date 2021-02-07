@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {IResponse} from './interfaces/response.interface';
@@ -21,14 +21,14 @@ export class CitiesService {
 
     getCitiesData(): Observable<IRegion[]> {
         return this.http.get<IResponse>(this.citiesUrl).pipe(
-            map((data) => {
+            map((data: IResponse) => {
                 return data[0].regions;
             })
         );
     }
 
     getWeatherData(latitude: number, longitude: number): Observable<any>{
-        return this.http.get<any>(
+        return this.http.get<HttpResponse<any>>(
             `${this.weatherUrl}/${latitude},${longitude}?lang=en&units=auto`,
             this.httpOptions
         );
