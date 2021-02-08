@@ -12,15 +12,15 @@ export class CitiesService {
     private _weatherUrl = 'https://dark-sky.p.rapidapi.com';
     private _httpOptions = {
         headers: new HttpHeaders({
-            "x-rapidapi-key": "ece9e209b0msh9c8b250a3889709p1b3e0cjsn779ba1f2293b",
-            "x-rapidapi-host": "dark-sky.p.rapidapi.com"
+            'x-rapidapi-key': 'ece9e209b0msh9c8b250a3889709p1b3e0cjsn779ba1f2293b',
+            'x-rapidapi-host': 'dark-sky.p.rapidapi.com'
         })
     };
 
-    constructor(private http: HttpClient) {}
+    constructor(private readonly _http: HttpClient) {}
 
     getCitiesData(): Observable<IRegion[]> {
-        return this.http.get<IResponse>(this._citiesUrl).pipe(
+        return this._http.get<IResponse>(this._citiesUrl).pipe(
             map((data: IResponse): IRegion[] => {
                 return data[0].regions;
             })
@@ -28,7 +28,7 @@ export class CitiesService {
     }
 
     getWeatherData(latitude: number, longitude: number): Observable<any> {
-        return this.http.get<HttpResponse<any>>(
+        return this._http.get<HttpResponse<any>>(
             `${this._weatherUrl}/${latitude},${longitude}?lang=en&units=auto`,
             this._httpOptions
         );

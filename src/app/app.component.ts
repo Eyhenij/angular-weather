@@ -16,7 +16,7 @@ export class AppComponent implements OnInit{
     public selectedCity: ICity;
     public weatherData: any;
 
-    constructor(private _citiesService: CitiesService) {}
+    constructor(private readonly _citiesService: CitiesService) {}
 
     ngOnInit(): void {
         this.getRegions();
