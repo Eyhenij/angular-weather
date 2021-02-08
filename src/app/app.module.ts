@@ -7,13 +7,15 @@ import {SidebarComponent} from './sidebar/sidebar.component';
 import {ContentComponent} from './content/content.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CitiesService} from './cities.service';
+import { ContentCardComponent } from './content/content-card/content-card.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
         SidebarComponent,
-        ContentComponent
+        ContentComponent,
+        ContentCardComponent
     ],
     imports: [
         BrowserModule,

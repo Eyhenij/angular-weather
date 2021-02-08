@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ICity} from '../interfaces/city.interface';
+import {IWeather} from '../interfaces/weather.interface';
 
 @Component({
     selector: 'app-content',
@@ -9,9 +9,7 @@ import {ICity} from '../interfaces/city.interface';
 export class ContentComponent implements OnInit {
 
     @Input()
-    selectedCity: ICity;
-    @Input()
-    weatherData: any;
+    public readonly weatherDataArray: IWeather[];
 
     constructor() {}
 

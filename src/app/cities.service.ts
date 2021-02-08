@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {IResponse} from './interfaces/response.interface';
 import {IRegion} from './interfaces/region.interface';
+import {IWeather} from './interfaces/weather.interface';
+import {ICity} from './interfaces/city.interface';
 
 @Injectable()
 export class CitiesService {
@@ -17,7 +19,8 @@ export class CitiesService {
         })
     };
 
-    constructor(private readonly _http: HttpClient) {}
+    constructor(private readonly _http: HttpClient) {
+    }
 
     getCitiesData(): Observable<IRegion[]> {
         return this._http.get<IResponse>(this._citiesUrl).pipe(
@@ -27,10 +30,22 @@ export class CitiesService {
         );
     }
 
-    getWeatherData(latitude: number, longitude: number): Observable<any> {
-        return this._http.get<HttpResponse<any>>(
-            `${this._weatherUrl}/${latitude},${longitude}?lang=en&units=auto`,
+    getWeatherData(city: ICity): Observable<IWeather> {
+        return this._http.get<any>(
+            `${this._weatherUrl}/${city.lat},${city.lng}?lang=en&units=auto`,
             this._httpOptions
+        ).pipe(
+            map((data: any): IWeather => {
+                return {
+                    cityName: city.name,
+                    currentTemperature: Math.round(data.currently.temperature),
+                    apparentTemperature: Math.round(data.currently.apparentTemperature),
+                    currentHumidity: `${data.currently.humidity * 100}%`,
+                    currentPressure: data.currently.pressure,
+                    currentWindSpeed: data.currently.windSpeed,
+                    dailySummary: data.daily.data[0].summary
+                };
+            })
         );
     }
 

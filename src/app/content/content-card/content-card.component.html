@@ -1,0 +1,15 @@
+<div class="header__card">
+    <div class="card__title">
+        <div>
+            {{weatherData?.cityName}}
+        </div>
+    </div>
+    <div class="card__content">
+        <div>Current temperature: {{weatherData?.currentTemperature}}</div>
+        <div>Apparent temperature: {{weatherData?.apparentTemperature}}</div>
+        <div>Humidity: {{weatherData?.currentHumidity}}</div>
+        <div>Pressure: {{weatherData?.currentPressure}}</div>
+        <div>Wind speed: {{weatherData?.currentWindSpeed}}</div>
+        <div>The weather forecast for tomorrow: {{weatherData?.dailySummary}}</div>
+    </div>
+</div>
