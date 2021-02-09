@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {IRegion} from '../interfaces/region.interface';
 
 @Component({
@@ -6,19 +6,17 @@ import {IRegion} from '../interfaces/region.interface';
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
     @Input()
-    regions: IRegion[];
+    public readonly regions: IRegion[];
     @Input()
-    selectedRegion: IRegion;
+    public readonly selectedRegion: IRegion;
 
     @Output()
     onRegionSelect: EventEmitter<IRegion> = new EventEmitter<IRegion>();
 
     constructor() {}
-
-    ngOnInit(): void {}
 
     selectRegion(region: IRegion): void {
         this.onRegionSelect.emit(region);

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {IWeather} from '../interfaces/weather.interface';
 
 @Component({
@@ -6,13 +6,11 @@ import {IWeather} from '../interfaces/weather.interface';
     templateUrl: './content.component.html',
     styleUrls: ['./content.component.scss']
 })
-export class ContentComponent implements OnInit {
+export class ContentComponent {
 
     @Input()
     public readonly weatherDataArray: IWeather[];
 
     constructor() {}
-
-    ngOnInit(): void {}
 
 }

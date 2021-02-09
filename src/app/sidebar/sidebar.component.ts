@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {IRegion} from '../interfaces/region.interface';
 import {ICity} from '../interfaces/city.interface';
 
@@ -7,22 +7,21 @@ import {ICity} from '../interfaces/city.interface';
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
 
     @Input()
-    regions: IRegion[];
+    public readonly regions: IRegion[];
     @Input()
-    selectedRegion: IRegion;
+    public readonly selectedRegion: IRegion;
     @Input()
-    cities: ICity[];
+    public readonly cities: ICity[];
     @Input()
-    selectedCity: ICity;
+    public readonly selectedCity: ICity;
 
     @Output()
     onCitySelect: EventEmitter<ICity> = new EventEmitter<ICity>();
 
     constructor() {}
-    ngOnInit(): void {}
 
     selectCity(city: ICity): void {
         this.onCitySelect.emit(city);
