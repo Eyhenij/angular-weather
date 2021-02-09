@@ -18,7 +18,7 @@ export class HeaderComponent {
 
     constructor() {}
 
-    selectRegion(region: IRegion): void {
+    public selectRegion(region: IRegion): void {
         this.onRegionSelect.emit(region);
     }
 

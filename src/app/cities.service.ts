@@ -22,7 +22,7 @@ export class CitiesService {
     constructor(private readonly _http: HttpClient) {
     }
 
-    getCitiesData(): Observable<IRegion[]> {
+    public getCitiesData(): Observable<IRegion[]> {
         return this._http.get<IResponse>(this._citiesUrl).pipe(
             map((data: IResponse): IRegion[] => {
                 return data[0].regions;
@@ -30,7 +30,7 @@ export class CitiesService {
         );
     }
 
-    getWeatherData(city: ICity): Observable<IWeather> {
+    public getWeatherData(city: ICity): Observable<IWeather> {
         return this._http.get<any>(
             `${this._weatherUrl}/${city.lat},${city.lng}?lang=en&units=auto`,
             this._httpOptions

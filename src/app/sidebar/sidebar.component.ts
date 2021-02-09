@@ -23,7 +23,7 @@ export class SidebarComponent {
 
     constructor() {}
 
-    selectCity(city: ICity): void {
+    public selectCity(city: ICity): void {
         this.onCitySelect.emit(city);
     }
 

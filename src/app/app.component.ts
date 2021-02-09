@@ -17,42 +17,41 @@ export class AppComponent implements OnInit {
     public selectedCity: ICity;
     public weatherDataArray: IWeather[] = [];
 
-    constructor(private readonly _citiesService: CitiesService) {
-    }
+    constructor(private readonly _citiesService: CitiesService) {}
 
     ngOnInit(): void {
-        this.getRegions();
+        this._getRegions();
     }
 
-    getRegions(): void {
+    private _getRegions(): void {
         this._citiesService.getCitiesData().subscribe(regions => {
             this.regions = regions;
             this.onRegionChange(this.regions[0]);
         });
     }
 
-    getWeather(city: ICity): void {
+    private _getWeather(city: ICity): void {
         this._citiesService.getWeatherData(city).subscribe((weather: any) => {
-            this.addNewWeatherData(weather);
+            this._addNewWeatherData(weather);
         });
     }
 
-    onRegionChange(region: IRegion): void {
+    private _addNewWeatherData(weather: IWeather): void {
+        this.weatherDataArray.unshift(weather);
+        if (this.weatherDataArray.length >= 4) {
+            this.weatherDataArray.splice(4, 1);
+        }
+    }
+
+    public onRegionChange(region: IRegion): void {
         this.selectedRegion = region;
         this.cities = this.selectedRegion.cities;
         this.onCityChange(this.cities[0]);
     }
 
-    onCityChange(city: ICity): void {
+    public onCityChange(city: ICity): void {
         this.selectedCity = city;
-        this.getWeather(city);
-    }
-
-    addNewWeatherData(weather: IWeather): void {
-        this.weatherDataArray.unshift(weather);
-        if (this.weatherDataArray.length >= 3) {
-            this.weatherDataArray.splice(3, 1);
-        }
+        this._getWeather(city);
     }
 
 }
