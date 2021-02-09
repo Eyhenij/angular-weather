@@ -1,4 +1,8 @@
 <div class="page">
+    <div class="onLoading" *ngIf="isLoading === true">
+        <app-on-loading></app-on-loading>
+    </div>
+
     <div class="page__header">
         <app-header
             [regions]="regions"

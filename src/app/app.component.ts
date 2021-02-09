@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
     public cities: ICity[];
     public selectedCity: ICity;
     public weatherDataArray: IWeather[] = [];
+    public isLoading = false;
 
     constructor(private readonly _citiesService: CitiesService) {}
 
@@ -24,15 +25,19 @@ export class AppComponent implements OnInit {
     }
 
     private _getRegions(): void {
+        this.isLoading = true;
         this._citiesService.getCitiesData().subscribe(regions => {
             this.regions = regions;
             this.onRegionChange(this.regions[0]);
+            this.isLoading = false;
         });
     }
 
     private _getWeather(city: ICity): void {
+        this.isLoading = true;
         this._citiesService.getWeatherData(city).subscribe((weather: any) => {
             this._addNewWeatherData(weather);
+            this.isLoading = false;
         });
     }
 
